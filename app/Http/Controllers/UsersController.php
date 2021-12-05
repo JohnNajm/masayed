@@ -87,7 +87,7 @@ class UsersController extends Controller
 
         $user->password = bcrypt($request->password);
         $user->fill($input)->save();
-        return back()->withErrors('success_message', 'Profile and Password updated successfully!');
+        return back()->with('success_message', 'Profile and Password updated successfully!');
 
     }
 
@@ -115,8 +115,7 @@ class UsersController extends Controller
             return view('pages.order')->with(['user' => auth()->user(),
                                             'products'=> $products,
                                             'order' => $order,
-                                            'id' => $id,
-                                            'orders' => $orders]);
+                                            'id' => $id]);
     
         } else {
             return back()->withErrors('No such order.');
